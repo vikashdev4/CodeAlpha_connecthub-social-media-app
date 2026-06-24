@@ -1,17 +1,30 @@
-# 🌐 ConnectHub
+# 🚀 ConnectHub – Full Stack Social Media App
 
-ConnectHub is a full-stack social media platform inspired by Instagram, built using Node.js, Express, MongoDB, and Vanilla JavaScript. It demonstrates real-world backend architecture, authentication flow, and a modern responsive UI with a dark-first design system.
-
-This project was developed as part of an internship submission to showcase practical full-stack development skills.
+ConnectHub is a modern Instagram-inspired full-stack social media platform built for internship submission.  
+It includes a **dark UI, authentication system, posts, likes, comments, followers system, and MongoDB Atlas backend**.
 
 ---
 
-## 🚀 Tech Stack
+## 🌐 Live Demo
+
+👉 Local Run:
+```
+http://localhost:5000
+```
+
+👉 GitHub Repository:
+```
+https://github.com/vikashdev4/CodeAlpha_connecthub-social-media-app
+```
+
+---
+
+## 🧠 Tech Stack
 
 ### Frontend
 - HTML5
-- CSS3 (Dark UI, Glassmorphism, Gradient Effects)
-- Vanilla JavaScript (No frameworks)
+- CSS3 (Dark UI + Glassmorphism)
+- Vanilla JavaScript
 
 ### Backend
 - Node.js
@@ -19,170 +32,199 @@ This project was developed as part of an internship submission to showcase pract
 - MongoDB Atlas
 - Mongoose
 - JWT Authentication
-- Multer (File Uploads)
-- bcryptjs (Password Hashing)
+- Multer (image uploads)
+- bcryptjs
 
 ---
 
-## 📁 Project Structure
+## 📁 Clean Project Structure
 
-social-media-app/
+```
+ConnectHub/
 │
 ├── backend/
-│   ├── config/           # Database connection
-│   ├── controllers/      # Business logic
-│   ├── middleware/       # Auth & error handling
-│   ├── models/           # MongoDB schemas
-│   ├── routes/           # API routes
-│   ├── uploads/          # Uploaded media
-│   ├── server.js         # Main server file
+│   ├── config/
+│   │   └── db.js
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── uploads/
+│   ├── server.js
+│   ├── package.json
 │   └── .env.example
 │
-└── frontend/
-    ├── pages/            # UI pages (login, feed, profile)
-    ├── css/              # Styling files
-    ├── js/               # Frontend logic
-    └── assets/
+├── frontend/
+│   ├── pages/
+│   │   ├── login.html
+│   │   ├── register.html
+│   │   ├── feed.html
+│   │   ├── profile.html
+│   │   └── create-post.html
+│   ├── css/
+│   ├── js/
+│   └── assets/
+│
+├── README.md
+└── .gitignore
+```
 
 ---
 
-## ⚙️ Setup & Installation
+## ⚙️ Installation & Setup
 
-### 1. Install dependencies
-cd backend
+### 1. Clone Repository
+```bash
+git clone https://github.com/your-username/connecthub.git
+cd connecthub/backend
+```
+
+---
+
+### 2. Install Dependencies
+```bash
 npm install
+```
 
 ---
 
-### 2. Environment variables
+### 3. Setup Environment Variables
 
-Create a `.env` file inside backend:
+Create `.env` file inside backend:
 
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
+```
 PORT=5000
-CLIENT_ORIGIN=http://127.0.0.1:5500
+MONGO_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/connecthub
+JWT_SECRET=your_secret_key
+```
 
 ---
 
-### 3. Run the project
-
+### 4. Run Server
+```bash
 npm start
+```
 
-Server runs at:
+Server will start at:
+```
 http://localhost:5000
+```
 
-Open in browser:
-http://localhost:5000/pages/login.html
+---
+
+## ⚠️ MongoDB Connection Issue (IMPORTANT)
+
+If you see error like:
+```
+MongoDB connection failed / IP not whitelisted
+```
+
+### Fix:
+1. Go to MongoDB Atlas
+2. Open Network Access
+3. Click **Add IP Address**
+4. Select:
+```
+0.0.0.0/0 (Allow access from anywhere)
+```
+5. Restart server
 
 ---
 
 ## ✨ Features
 
-🔐 Authentication System
-- Register/Login
-- JWT authentication
-- Secure password hashing
+### 🔐 Authentication
+- Register / Login system
+- JWT token authentication
+- Password encryption (bcryptjs)
 
-👤 User System
-- Profile creation & editing
-- Profile image upload
-- Followers / following system
+### 👤 User System
+- Profile creation
+- Edit profile (bio, username, image)
+- Follow / Unfollow users
+- Followers & Following list
 
-📝 Posts System
-- Create posts with image + caption
-- Like / unlike posts
+### 📝 Posts System
+- Create posts (image + caption)
 - Delete own posts
-- Infinite scroll feed
+- Like / Unlike posts
+- Comment system
 
-💬 Social Features
-- Comments system
+### 🔎 Social Features
 - User search
-- Notifications (follow, like, comment)
+- Notifications system
+- Real-time feed (latest posts first)
 
-🎨 UI/UX Design
-- Dark mode UI
+### 🎨 UI/UX
+- Dark mode design
 - Glassmorphism navbar
-- Instagram-style gradient avatar rings
-- Smooth animations
+- Gradient story rings
 - Fully responsive design
+- Smooth animations
 
 ---
 
 ## 🗄️ Database Models
 
-User:
-- username, email, password
-- profileImage, bio
-- followers, following
+### User
+```
+username, email, password, fullName, profileImage, bio,
+followers[], following[], createdAt
+```
 
-Post:
-- image, caption
-- likes, commentsCount
-- user reference
+### Post
+```
+userId, image, caption, likes[], commentsCount
+```
 
-Comment:
-- postId, userId, text
+### Comment
+```
+postId, userId, comment, createdAt
+```
 
-Notification:
-- sender, recipient
-- type (like/follow/comment)
-- read status
-
----
-
-## 🔌 API Endpoints
-
-Base URL:
-/api
-
-Auth:
-- POST /auth/register
-- POST /auth/login
-- GET /auth/me
-
-Users:
-- GET /users/:id
-- PUT /users/update
-- POST /users/follow/:id
-- POST /users/unfollow/:id
-
-Posts:
-- POST /posts/create
-- GET /posts/feed
-- POST /posts/like/:id
-
-Comments:
-- POST /comments/:postId
-
-Notifications:
-- GET /notifications
+### Notification
+```
+recipient, sender, type, post, read
+```
 
 ---
 
-## 🎯 Highlights
+## 🚀 API Routes
 
-- Full-stack working social media app
-- Clean MVC backend structure
-- JWT authentication system
-- Real-world REST API design
-- Responsive dark UI
-- Internship-ready project
+| Method | Endpoint | Description |
+|------|----------|-------------|
+| POST | /api/auth/register | Register user |
+| POST | /api/auth/login | Login user |
+| GET | /api/auth/me | Get current user |
+| GET | /api/posts/feed | Get feed |
+| POST | /api/posts/create | Create post |
+| POST | /api/posts/like/:id | Like/Unlike post |
+| POST | /api/comments/:postId | Add comment |
+| GET | /api/users/search | Search users |
+| POST | /api/users/follow/:id | Follow user |
+| POST | /api/users/unfollow/:id | Unfollow user |
 
 ---
 
-## 📌 Future Improvements
+## 💡 Notes
 
-- Real-time chat (WebSockets)
-- Stories feature
-- Video upload support
-- Deployment on Render / Vercel
-- React frontend upgrade
+- Backend serves frontend directly (no separate server needed)
+- Works with Live Server (CORS enabled)
+- MongoDB Atlas required for full functionality
+- JWT used for authentication security
 
 ---
 
 ## 👨‍💻 Author
 
-Full-stack internship project demonstrating backend + frontend development skills.
+**Vikash Dhakad**  
+Full Stack Internship Project – ConnectHub
 
 ---
+
+## 🏁 Status
+
+✔ Completed  
+✔ Working Full Stack Project  
+✔ Internship Ready  
+✔ GitHub Deployed
