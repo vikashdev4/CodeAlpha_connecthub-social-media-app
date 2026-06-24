@@ -79,11 +79,11 @@ Then start the server:
 npm start          # or: npm run dev   (auto-restarts with nodemon)
 ```
 
-You'll see:
+result:
 
 ```
-✅ MongoDB connected: <your-cluster-host>
-🚀 ConnectHub server running on http://localhost:5000
+ MongoDB connected: <your-cluster-host>
+ ConnectHub server running on http://localhost:5000
 ```
 
 **That's it — open `http://localhost:5000` in your browser.** The Express server
