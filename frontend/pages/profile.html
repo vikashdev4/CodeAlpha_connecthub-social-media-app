@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Profile • ConnectHub</title>
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/feed.css" />
+<link rel="stylesheet" href="../css/profile.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="feed.html" class="navbar-brand">
+    <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent-pink)" stroke-width="2"><rect x="3" y="6" width="18" height="14" rx="3"/><circle cx="12" cy="13" r="3.4"/><path d="M8 6l1.2-2h5.6L16 6"/></svg>
+    <span class="brand-logo brand-text">ConnectHub</span>
+  </a>
+
+  <div class="navbar-search">
+    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    <input type="text" class="input" id="navbarSearchInput" placeholder="Search ConnectHub" autocomplete="off" />
+    <div class="search-results" id="searchResults"></div>
+  </div>
+
+  <div class="navbar-actions">
+    <a href="feed.html" class="btn-icon nav-desktop-only" title="Home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg>
+    </a>
+    <a href="create-post.html" class="btn-icon nav-desktop-only" title="Create">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/></svg>
+    </a>
+
+    <div class="navbar-icon-wrap">
+      <button class="btn-icon" id="notifBtn" title="Notifications" style="position:relative;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7.5-4.6-10-9.3C.4 8.1 2.2 4.5 5.7 4c2-.3 3.9.7 6.3 3 2.4-2.3 4.3-3.3 6.3-3 3.5.5 5.3 4.1 3.7 7.7C19.5 16.4 12 21 12 21z"/></svg>
+        <span class="badge-dot" id="notifBadge" style="display:none;"></span>
+      </button>
+      <div class="dropdown-panel" id="notifDropdown">
+        <div class="dropdown-panel-header">Notifications</div>
+        <div class="dropdown-list" id="notifList"></div>
+      </div>
+    </div>
+
+    <div class="navbar-icon-wrap">
+      <button id="profileBtn" style="border-radius:50%;">
+        <span id="navAvatarSlot"></span>
+      </button>
+      <div class="dropdown-panel" id="profileDropdown">
+        <div class="dropdown-panel-header" id="dropdownUsername">@you</div>
+        <div class="dropdown-list">
+          <a class="dropdown-item" id="myProfileLink" href="#">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+            View Profile
+          </a>
+          <button class="dropdown-item" id="logoutBtn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+            Log Out
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="page-shell">
+
+  <div id="profileSkeleton" style="display:none;" class="profile-container">
+    <div style="display:flex;gap:40px;align-items:center;margin-bottom:36px;">
+      <div class="skeleton" style="width:132px;height:132px;border-radius:50%;"></div>
+      <div style="flex:1;">
+        <div class="skeleton" style="width:160px;height:22px;margin-bottom:16px;"></div>
+        <div class="skeleton" style="width:240px;height:14px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="profileContent" style="display:none;">
+    <div class="profile-container">
+
+      <div class="profile-header">
+        <div id="profileAvatarSlot"></div>
+        <div class="profile-info">
+          <div class="profile-info-top">
+            <h1 class="profile-username" id="profileUsername"></h1>
+            <div class="profile-actions" id="profileActionsSlot"></div>
+          </div>
+          <div class="profile-stats">
+            <div class="profile-stat"><strong id="statPosts">0</strong><span>posts</span></div>
+            <div class="profile-stat" id="statFollowersBtn"><strong id="statFollowers">0</strong><span>followers</span></div>
+            <div class="profile-stat" id="statFollowingBtn"><strong id="statFollowing">0</strong><span>following</span></div>
+          </div>
+          <div class="profile-bio">
+            <span class="full-name" id="profileFullName"></span>
+            <span id="profileBioText"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-tabs">
+        <div class="profile-tab active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          Posts
+        </div>
+      </div>
+
+      <div class="empty-state" id="postsEmptyState" style="display:none;">
+        <div class="empty-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+        </div>
+        <h3>No posts yet</h3>
+        <p>When photos are shared, they'll appear here.</p>
+        <a href="create-post.html" class="btn btn-primary btn-sm empty-action" style="margin-top:14px;">Share your first photo</a>
+      </div>
+
+      <div class="post-grid" id="postGrid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ Edit profile modal ============ -->
+<div class="modal-overlay" id="editProfileModalOverlay">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>Edit Profile</h3>
+      <button class="btn-icon" id="closeEditModalBtn"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <form id="editProfileForm">
+        <div class="edit-avatar-row">
+          <span id="editAvatarSlot"></span>
+          <label for="editAvatarInput">Change photo</label>
+          <input type="file" id="editAvatarInput" accept="image/*" hidden />
+        </div>
+
+        <div class="field">
+          <label for="editFullName">Full name</label>
+          <input type="text" id="editFullName" class="input" maxlength="50" />
+        </div>
+        <div class="field">
+          <label for="editUsername">Username</label>
+          <input type="text" id="editUsername" class="input" maxlength="30" />
+        </div>
+        <div class="field">
+          <label for="editBio">Bio</label>
+          <textarea id="editBio" class="textarea" maxlength="150" placeholder="Tell people about yourself"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="editProfileSubmitBtn">Save Changes</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ============ Followers / Following modal ============ -->
+<div class="modal-overlay" id="followListModalOverlay">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="followListModalTitle">Followers</h3>
+      <button class="btn-icon" id="closeFollowListModalBtn"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="modal-body" id="followListModalBody"></div>
+  </div>
+</div>
+
+<!-- ============ Post detail modal ============ -->
+<div class="modal-overlay" id="postDetailModalOverlay">
+  <div class="modal-box modal-wide">
+    <div class="modal-header">
+      <h3>Post</h3>
+      <button class="btn-icon" id="closePostDetailModalBtn"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div id="postDetailModalBody"></div>
+  </div>
+</div>
+
+<nav class="bottom-nav">
+  <a href="feed.html" data-page="feed.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg>
+  </a>
+  <a href="#" id="bottomSearchBtn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+  </a>
+  <a href="create-post.html" data-page="create-post.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/></svg>
+  </a>
+  <a href="profile.html" data-page="profile.html" class="active">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+  </a>
+</nav>
+
+<script src="../js/api.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/profile.js"></script>
+<script>
+  document.getElementById('bottomSearchBtn').addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById('navbarSearchInput').focus();
+  });
+</script>
+</body>
+</html>

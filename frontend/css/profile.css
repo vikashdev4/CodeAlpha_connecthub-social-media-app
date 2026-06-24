@@ -1,0 +1,293 @@
+/* =========================================================
+   ConnectHub — Profile page styles
+   ========================================================= */
+
+.profile-container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 36px 16px 80px;
+}
+
+.profile-header {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 36px;
+}
+.profile-header .avatar-ring {
+  width: 132px;
+  height: 132px;
+  flex-shrink: 0;
+}
+.profile-header .avatar {
+  width: 124px;
+  height: 124px;
+  font-size: 40px;
+}
+
+.profile-info {
+  flex: 1;
+  min-width: 0;
+}
+.profile-info-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.profile-username {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+}
+.profile-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.profile-stats {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 16px;
+}
+.profile-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  cursor: pointer;
+}
+.profile-stat strong {
+  font-size: 16px;
+  font-weight: 700;
+}
+.profile-stat span {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+}
+.profile-stat:hover strong,
+.profile-stat:hover span {
+  color: var(--text);
+}
+
+.profile-bio {
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.profile-bio .full-name {
+  font-weight: 700;
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* ---------------------------------------------------------
+   Post grid
+   --------------------------------------------------------- */
+.profile-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  border-top: 1px solid var(--border-soft);
+  margin-bottom: 4px;
+}
+.profile-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 4px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-top: 1.5px solid transparent;
+  margin-top: -1px;
+}
+.profile-tab.active {
+  color: var(--text);
+  border-top-color: var(--text);
+}
+.profile-tab svg {
+  width: 14px;
+  height: 14px;
+}
+
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 20px;
+}
+.post-grid-item {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--surface-2);
+}
+.post-grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition);
+}
+.post-grid-item:hover img {
+  transform: scale(1.04);
+}
+.post-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  opacity: 0;
+  transition: opacity var(--transition);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+}
+.post-grid-item:hover .post-grid-overlay {
+  opacity: 1;
+}
+.post-grid-overlay span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.post-grid-overlay svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---------------------------------------------------------
+   Followers / Following list (inside modal)
+   --------------------------------------------------------- */
+.user-list-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+}
+.user-list-row .avatar-ring {
+  width: 44px;
+  height: 44px;
+}
+.user-list-row .avatar {
+  width: 40px;
+  height: 40px;
+  font-size: 14px;
+}
+.user-list-info {
+  flex: 1;
+  min-width: 0;
+}
+.user-list-info .username {
+  font-weight: 600;
+  font-size: 13.5px;
+}
+.user-list-info .full-name {
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+/* ---------------------------------------------------------
+   Edit profile modal extras
+   --------------------------------------------------------- */
+.edit-avatar-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+.edit-avatar-row .avatar-ring {
+  width: 64px;
+  height: 64px;
+}
+.edit-avatar-row .avatar {
+  width: 60px;
+  height: 60px;
+  font-size: 20px;
+}
+.edit-avatar-row label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent-pink);
+  cursor: pointer;
+}
+
+/* ---------------------------------------------------------
+   Post detail modal
+   --------------------------------------------------------- */
+.post-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.post-detail-media {
+  background: #000;
+  display: flex;
+  align-items: center;
+}
+.post-detail-media img {
+  width: 100%;
+}
+.post-detail-side {
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh;
+}
+.post-detail-side .post-comments-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+@media (max-width: 700px) {
+  .post-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------------------------------------------------------
+   Responsive
+   --------------------------------------------------------- */
+@media (max-width: 600px) {
+  .profile-header {
+    gap: 20px;
+  }
+  .profile-header .avatar-ring {
+    width: 88px;
+    height: 88px;
+  }
+  .profile-header .avatar {
+    width: 80px;
+    height: 80px;
+    font-size: 28px;
+  }
+  .profile-username {
+    font-size: 17px;
+  }
+  .profile-stats {
+    gap: 20px;
+  }
+  .profile-info-top {
+    gap: 10px;
+  }
+  .post-grid {
+    gap: 3px;
+  }
+}
+
+@media (max-width: 420px) {
+  .profile-header {
+    align-items: flex-start;
+  }
+  .profile-actions {
+    width: 100%;
+  }
+  .profile-actions .btn {
+    flex: 1;
+  }
+}

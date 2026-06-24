@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sign Up • ConnectHub</title>
+<link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<div class="auth-shell">
+
+  <div class="auth-visual">
+    <div class="auth-visual-card">
+      <div style="width:100%;aspect-ratio:1;border-radius:14px;margin-bottom:12px;background:linear-gradient(135deg, var(--accent-purple), var(--accent-pink) 55%, var(--accent-orange));"></div>
+      <div class="auth-visual-row">
+        <div class="avatar" style="width:30px;height:30px;font-size:12px;background:var(--surface-2);">M</div>
+        <div class="auth-visual-meta">
+          <strong>maya.codes</strong>
+          <span class="text-muted">5h ago</span>
+        </div>
+      </div>
+      <div class="text-secondary" style="font-size:13px;">Join the community 🚀</div>
+    </div>
+    <div class="auth-visual-copy">
+      <h2>Create your ConnectHub account</h2>
+      <p>It only takes a minute — your friends are already here.</p>
+    </div>
+  </div>
+
+  <div class="auth-form-side">
+    <div class="auth-form-box">
+      <span class="brand-logo">ConnectHub</span>
+      <h1>Sign up to get started</h1>
+
+      <form id="registerForm" novalidate>
+        <div class="field">
+          <label for="regFullName">Full name <span class="text-muted">(optional)</span></label>
+          <input type="text" id="regFullName" class="input" placeholder="Jordan Lee" autocomplete="name" />
+        </div>
+
+        <div class="field" id="regUsernameField">
+          <label for="regUsername">Username</label>
+          <input type="text" id="regUsername" class="input" placeholder="jordan.lee" autocomplete="username" />
+          <div class="field-error"></div>
+        </div>
+
+        <div class="field" id="regEmailField">
+          <label for="regEmail">Email</label>
+          <input type="email" id="regEmail" class="input" placeholder="you@example.com" autocomplete="email" />
+          <div class="field-error"></div>
+        </div>
+
+        <div class="field" id="regPasswordField">
+          <label for="regPassword">Password</label>
+          <input type="password" id="regPassword" class="input" placeholder="At least 6 characters" autocomplete="new-password" />
+          <div class="field-error"></div>
+        </div>
+
+        <div class="field" id="regConfirmField">
+          <label for="regConfirm">Confirm password</label>
+          <input type="password" id="regConfirm" class="input" placeholder="Re-enter your password" autocomplete="new-password" />
+          <div class="field-error"></div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="registerSubmitBtn">Sign Up</button>
+      </form>
+
+      <div class="auth-switch">
+        Already have an account? <a href="login.html">Log in</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/auth.js"></script>
+</body>
+</html>

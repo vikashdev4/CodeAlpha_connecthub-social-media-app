@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Log In • ConnectHub</title>
+<link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<div class="auth-shell">
+
+  <!-- Visual / brand panel -->
+  <div class="auth-visual">
+    <div class="auth-visual-card">
+      <div style="width:100%;aspect-ratio:1;border-radius:14px;margin-bottom:12px;background:linear-gradient(135deg, var(--accent-orange), var(--accent-pink) 55%, var(--accent-purple));"></div>
+      <div class="auth-visual-row">
+        <div class="avatar" style="width:30px;height:30px;font-size:12px;background:var(--surface-2);">A</div>
+        <div class="auth-visual-meta">
+          <strong>aria.codes</strong>
+          <span class="text-muted">2h ago</span>
+        </div>
+      </div>
+      <div class="text-secondary" style="font-size:13px;">Shipping something new today ✨</div>
+    </div>
+    <div class="auth-visual-copy">
+      <h2>Welcome back to ConnectHub</h2>
+      <p>Share moments, follow friends, and keep the conversation going.</p>
+    </div>
+  </div>
+
+  <!-- Form panel -->
+  <div class="auth-form-side">
+    <div class="auth-form-box">
+      <span class="brand-logo">ConnectHub</span>
+      <h1>Log in to your account</h1>
+
+      <form id="loginForm" novalidate>
+        <div class="field" id="loginIdentifierField">
+          <label for="loginIdentifier">Email or username</label>
+          <input type="text" id="loginIdentifier" class="input" placeholder="you@example.com" autocomplete="username" />
+          <div class="field-error"></div>
+        </div>
+
+        <div class="field" id="loginPasswordField">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" class="input" placeholder="••••••••" autocomplete="current-password" />
+          <div class="field-error"></div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="loginSubmitBtn">Log In</button>
+      </form>
+
+      <div class="auth-divider">New here</div>
+
+      <a href="register.html" class="btn btn-secondary btn-block">Create an account</a>
+
+      <div class="auth-switch">
+        Don't have an account? <a href="register.html">Sign up</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/auth.js"></script>
+</body>
+</html>
