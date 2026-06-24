@@ -1,4 +1,4 @@
-# 🚀 ConnectHub – Full Stack Social Media App
+# 🚀 ConnectHub – Social Media App
 
 ConnectHub is a modern Instagram-inspired full-stack social media platform built for internship submission.  
 It includes a **dark UI, authentication system, posts, likes, comments, followers system, and MongoDB Atlas backend**.
@@ -112,25 +112,6 @@ http://localhost:5000
 
 ---
 
-## ⚠️ MongoDB Connection Issue (IMPORTANT)
-
-If you see error like:
-```
-MongoDB connection failed / IP not whitelisted
-```
-
-### Fix:
-1. Go to MongoDB Atlas
-2. Open Network Access
-3. Click **Add IP Address**
-4. Select:
-```
-0.0.0.0/0 (Allow access from anywhere)
-```
-5. Restart server
-
----
-
 ## ✨ Features
 
 ### 🔐 Authentication
@@ -219,12 +200,3 @@ recipient, sender, type, post, read
 
 **Vikash Dhakad**  
 Full Stack Internship Project – ConnectHub
-
----
-
-## 🏁 Status
-
-✔ Completed  
-✔ Working Full Stack Project  
-✔ Internship Ready  
-✔ GitHub Deployed
